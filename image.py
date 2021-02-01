@@ -19,12 +19,18 @@ print(f"Generating matrix {xpix}x{ypix}...")
 pic = np.zeros((xpix, ypix))
 for i in range(xpix):
     for j in range(ypix):
-        noise_val =         noise1([i/xpix, j/ypix])
-        noise_val += 0.5  * noise2([i/xpix, j/ypix])
-        noise_val += 0.25 * noise3([i/xpix, j/ypix])
-        noise_val += 0.125* noise4([i/xpix, j/ypix])
+        # noise_val =         noise1([i/xpix, j/ypix])
+        # noise_val += 0.5  * noise2([i/xpix, j/ypix])
+        # noise_val += 0.25 * noise3([i/xpix, j/ypix])
+        # noise_val += 0.125* noise4([i/xpix, j/ypix])
 
-        # noise_val = pow(noise_val, 5)
+        e0 =       2*(0.5-abs(0.5-noise1([i/xpix, j/ypix])))
+        e1 = 0.5  *2*(0.5-abs(0.5-noise2([i/xpix, j/ypix])))*e0
+        e2 = 0.25 *2*(0.5-abs(0.5-noise3([i/xpix, j/ypix])))*(e0+e1)
+        e3 = 0.125*2*(0.5-abs(0.5-noise4([i/xpix, j/ypix])))*(e0+e1+e2)
+        noise_val = e3
+
+        # noise_val = pow(noise_val, 2)
 
         pic[i,j] = noise_val
 
