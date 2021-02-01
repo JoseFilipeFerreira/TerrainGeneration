@@ -1,0 +1,17 @@
+newmtl front
+	map_Kd textures\sky_front2.png
+
+newmtl back
+	map_Kd textures\sky_back2.png
+
+newmtl right
+	map_Kd textures\sky_right2.png
+	
+newmtl top
+	map_Kd textures\sky_up2.png
+	
+newmtl left
+	map_Kd textures\sky_left2.png
+	
+newmtl bottom
+	map_Kd textures\sky_bottom2.png
