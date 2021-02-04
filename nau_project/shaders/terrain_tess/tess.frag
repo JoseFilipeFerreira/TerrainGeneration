@@ -19,8 +19,6 @@ void main()
 	intensity = max(dot(l,n),0.0);
 
 
-
-    
     float height = DataIn.height;
     vec4 height_color;
     
