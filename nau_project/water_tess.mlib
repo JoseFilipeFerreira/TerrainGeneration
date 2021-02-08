@@ -37,6 +37,9 @@
 
                     <valueof uniform="water_level" 	type="RENDERER" context="CURRENT" 
                                                 component="water_level"  />
+                    
+                    <valueof uniform="foam_cutoff_height" 	type="RENDERER" context="CURRENT" 
+												component="foam_cutoff_height"  />
 
                     <valueof uniform="noise" 	type="TEXTURE_BINDING" context="CURRENT"
                                                 component="UNIT" id=0 />

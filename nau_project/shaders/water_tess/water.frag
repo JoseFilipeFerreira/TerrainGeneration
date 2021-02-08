@@ -2,6 +2,7 @@
 
 uniform mat4 view_matrix;
 uniform vec3 light_dir;
+uniform float foam_cutoff_height;
 out vec4 colorOut;
 
 in Data {
@@ -23,14 +24,17 @@ void main()
 	
 	vec4 height_color;
 
-	float heigh_difference = abs(DataIn.water_height - DataIn.terrain_height);
+	float height_difference = abs(DataIn.water_height - DataIn.terrain_height);
 
 	if  (DataIn.water_height <= DataIn.terrain_height) {
-		height_color = foam;
-	} else if (heigh_difference < 0.1) {
-		height_color = mix(foam, water, heigh_difference/0.1);
+		height_color = vec4(0,0,0,0);
+
+	} else if (height_difference < foam_cutoff_height) {
+
+		height_color = mix(foam, water, height_difference/foam_cutoff_height);
+
 	} else {
-		height_color = mix(deep_water, water, (DataIn.water_height - 0.1) * (1/0.1));
+		height_color = mix(deep_water, water, (DataIn.water_height - foam_cutoff_height));
 	}
 
     colorOut = (height_color * intensity) + height_color * 0.2;
