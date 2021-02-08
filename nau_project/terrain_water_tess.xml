@@ -7,8 +7,10 @@
             <attribute name="width" data="FLOAT" type="RENDERER" value=1 />
             <attribute name="level" data="FLOAT" type="RENDERER" value=30 />
             <attribute name="cam_pos_x" data="FLOAT" type="RENDERER" value=0 />
-            <attribute name="water_level" data="FLOAT" type="RENDERER" value=0.1 />
-            <attribute name="foam_cutoff_height" data="FLOAT" type="RENDERER" value=0.01 />
+            <attribute name="water_level" data="FLOAT" type="RENDERER" value=0.4 />
+            <attribute name="wave_frequency" data="FLOAT" type="RENDERER" value=10 />
+            <attribute name="wave_height" data="FLOAT" type="RENDERER" value=0.01 />
+            <attribute name="foam_cutoff_height" data="FLOAT" type="RENDERER" value=0.05 />
             
         </attributes>
         <scenes>
@@ -142,6 +144,12 @@
 
             <var label="water level" type="RENDERER" context="CURRENT" 
                     component="water_level" def="min=0 max=5 step=0.02" />
+            
+            <var label="wave frequency" type="RENDERER" context="CURRENT" 
+                    component="wave_frequency" def="min=0 max=50 step=1" />
+            
+             <var label="wave height" type="RENDERER" context="CURRENT" 
+                    component="wave_height" def="min=0 max=1 step=0.01" />
 
             <var label="foam cutoff height" type="RENDERER" context="CURRENT" 
                     component="foam_cutoff_height" def="min=0 max=1 step=0.005" />

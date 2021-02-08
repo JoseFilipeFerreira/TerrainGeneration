@@ -8,6 +8,8 @@ uniform mat3 normal_matrix;
 uniform	float scale;
 uniform float width;
 uniform float water_level;
+uniform float wave_frequency;
+uniform float wave_height;
 uniform float timer;
 uniform sampler2D noise;
 
@@ -21,9 +23,9 @@ out Data {
 
 float height_calculator(float px, float pz){
     return
-      sin((px + pz) * 10 + timer / 1000) * 0.01
-    + sin(pz * 20 + timer / 500) * 0.001
-    + sin(px * 15 + timer / 500 + 200) * 0.002
+      sin((px + pz) * wave_frequency - wave_frequency + timer / 1000) * wave_height
+    + sin(pz * wave_frequency * 2 - wave_frequency * 2 + timer / 500) * wave_height / 10
+    + sin(px * wave_frequency * 1.5 - wave_frequency * 1.5 + timer / 500 + 200) * wave_height / 5
     + water_level;
 }
 

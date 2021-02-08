@@ -51,6 +51,7 @@
 
                     <valueof uniform="width" 	type="RENDERER" context="CURRENT" 
 												component="width"  />
+
                     
                     <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
 												component="VIEW" />

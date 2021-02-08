@@ -37,7 +37,13 @@
 
                     <valueof uniform="water_level" 	type="RENDERER" context="CURRENT" 
                                                 component="water_level"  />
-                    
+
+                    <valueof uniform="wave_frequency" 	type="RENDERER" context="CURRENT" 
+                                                component="wave_frequency"  />
+
+                    <valueof uniform="wave_height" 	type="RENDERER" context="CURRENT" 
+                                                component="wave_height"  />
+
                     <valueof uniform="foam_cutoff_height" 	type="RENDERER" context="CURRENT" 
 												component="foam_cutoff_height"  />
 
