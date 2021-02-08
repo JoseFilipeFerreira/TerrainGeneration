@@ -22,7 +22,7 @@
 			</scene>
 
 			<scene name="Square" type="OctreeByMat">
-				<file  name="models/square.patch"/>
+				<file  name="models/square16.patch"/>
 				<TRANSLATE x = -1.5 y = 0 z = 0 />
 			</scene>
 		</scenes>
