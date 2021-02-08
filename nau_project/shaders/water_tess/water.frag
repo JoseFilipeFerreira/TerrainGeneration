@@ -17,8 +17,8 @@ void main()
 	float intensity = max(dot(n,l), 0.0);
 
     // Color constants:
-	vec4 deep_water      = vec4(0.243, 0.376, 0.729,1);
-	vec4 water           = vec4(0.368, 0.494, 1,1);
+	vec4 deep_water      = vec4(0.243, 0.376, 0.729, 1.0);
+	vec4 water           = vec4(0.368, 0.494, 1, 1.0);
 	vec4 foam            = vec4(1.0, 1.0, 1.0, 1.0);
 	
 	vec4 height_color;

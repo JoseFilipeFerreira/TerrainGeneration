@@ -16,6 +16,14 @@ out Data {
     vec4 normal;
 } DataOut;
 
+float height_calculator(float px, float pz){
+    return
+      sin((px + pz) * 10 + timer / 1000) * 0.01
+    + sin(pz * 20 + timer / 500) * 0.001
+    + sin(px * 15 + timer / 500 + 200) * 0.002
+    + water_level;
+}
+
 void main() {
 
 	float u = gl_TessCoord.x;
@@ -26,7 +34,6 @@ void main() {
 	vec4 p2 = mix(posTC[3],posTC[2],u);
     vec4 pos = mix(p1, p2, v);
 
-    DataOut.water_height = sin(pos.z * 10 + timer / 1000) * 0.01 + water_level;
     // Gerstner Waves
     // float k =  10;
     // float c = sqrt(9.8/k);
@@ -35,9 +42,22 @@ void main() {
 
     // DataOut.water_height = X;
 
+    float c  = height_calculator(pos.x, pos.z);
+    float x1 = height_calculator(pos.x - 1, pos.z);
+    float x2 = height_calculator(pos.x + 1, pos.z);
+    float z1 = height_calculator(pos.x, pos.z - 1);
+    float z2 = height_calculator(pos.x, pos.z + 1);
 
-    pos.y = DataOut.water_height;
-	gl_Position = m_pvm * pos;
-    DataOut.normal = vec4(0,1,0,0);
-    DataOut.terrain_height = 	texture(noise, pos.xz).x * scale;
+    float x = ((x1-c)+(c-x2))*scale;
+    float z = ((z1-c)+(c-z2))*scale;
+    float y = sqrt(1-pow(x,2)-pow(z,2));
+
+    DataOut.normal = normalize(vec4(x,y,z,0));
+    DataOut.water_height = c;
+    DataOut.terrain_height = texture(noise, pos.xz).x * scale;
+
+    pos.y = c;
+
+
+    gl_Position = m_pvm * pos;
 }
