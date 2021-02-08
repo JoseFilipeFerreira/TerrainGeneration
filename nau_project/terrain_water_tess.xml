@@ -60,6 +60,7 @@
         <materialLibs>
             <materialLib filename="terrain_tess.mlib"/>
             <materialLib filename="water_tess.mlib"/>
+            <materialLib filename="texture.mlib" />
         </materialLibs>
         
     </assets>
@@ -86,6 +87,7 @@
                 <COLOR_CLEAR value=false />
                 <DEPTH_CLEAR value=false />
                 <scenes>
+                    
                     <scene name="SquareWater" />
                 </scenes>
                 <camera name="MainCamera" />
@@ -97,14 +99,23 @@
                 </materialMaps>
             </pass>
 
-            <!-- <pass class="default" name="sky">
+            <pass class="default" name="sky" >
                 <COLOR_CLEAR value=false />
                 <DEPTH_CLEAR value=false />
-                <scenes>
-                    <scene name="skybox" />
-                </scenes>
-                <camera name="MainCamera" />
-            </pass> -->
+				<scenes>
+					<scene name="skybox" />
+				</scenes>
+				<camera name="MainCamera" />
+				<lights>
+					<light name="Sun" />
+				</lights>
+				<injectionMaps>
+					<map toMaterial="*">
+						<shader fromMaterial="textured" fromLibrary="Texture" />
+						<state name="cullFront" fromLibrary="Texture" />
+					</map>
+				</injectionMaps>
+			</pass>
         </pipeline>
         
     </pipelines>

@@ -29,6 +29,7 @@ void main() {
     vec4 p1 = mix(posTC[0],posTC[1],u);
     vec4 p2 = mix(posTC[3],posTC[2],u);
     vec4 pos = mix(p1, p2, v);
+    vec2 normalized_pos_xz = pos.xz;
 
     DataOut.height = texture(noise, pos.xz).x;
     pos.y = DataOut.height * scale;
@@ -36,5 +37,5 @@ void main() {
     pos.z = pos.z * width;
 
     gl_Position = m_pvm * pos;
-    DataOut.normal = vec4(normalize(normal_matrix * texture(normals, pos.xz).xyz) ,0.0);
+    DataOut.normal = vec4(normalize(normal_matrix * texture(normals, normalized_pos_xz).xyz) ,0.0);
 }
