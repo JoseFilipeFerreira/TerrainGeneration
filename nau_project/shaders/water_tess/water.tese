@@ -51,15 +51,15 @@ void main() {
     float z1 = height_calculator(pos.x, pos.z - 1);
     float z2 = height_calculator(pos.x, pos.z + 1);
 
-    float x = ((x1-c)+(c-x2))*scale;
-    float z = ((z1-c)+(c-z2))*scale;
+    float x = ((x1-c)+(c-x2)) * scale;
+    float z = ((z1-c)+(c-z2)) * scale;
     float y = sqrt(1-pow(x,2)-pow(z,2));
 
     DataOut.normal = vec4( normalize(normal_matrix * vec3(x,y,z)) ,0.0);
     DataOut.water_height = c;
-    DataOut.terrain_height = texture(noise, pos.xz).x * scale;
+    DataOut.terrain_height = texture(noise, pos.xz).x;
 
-    pos.y = c;
+    pos.y = c * scale;
     pos.x = pos.x * width;
     pos.z = pos.z * width;
 

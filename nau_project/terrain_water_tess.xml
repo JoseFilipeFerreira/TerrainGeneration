@@ -8,6 +8,7 @@
             <attribute name="level" data="FLOAT" type="RENDERER" value=30 />
             <attribute name="cam_pos_x" data="FLOAT" type="RENDERER" value=0 />
             <attribute name="water_level" data="FLOAT" type="RENDERER" value=0.1 />
+            <attribute name="foam_cutoff_height" data="FLOAT" type="RENDERER" value=0.01 />
             
         </attributes>
         <scenes>
@@ -131,12 +132,19 @@
 
             <var label="cam_pos_x" type="RENDERER" context="CURRENT" 
                     component="cam_pos_x" def="min=0 max=1 step=0.01" />
+            
+            <var label="width" type="RENDERER" context="CURRENT" 
+                    component="width" def="min=0.1 max=50 step=0.1" />
+
+        </window>
+
+        <window label="water" >
 
             <var label="water level" type="RENDERER" context="CURRENT" 
                     component="water_level" def="min=0 max=5 step=0.02" />
 
-            <var label="width" type="RENDERER" context="CURRENT" 
-                    component="width" def="min=0.1 max=50 step=0.1" />
+            <var label="foam cutoff height" type="RENDERER" context="CURRENT" 
+                    component="foam_cutoff_height" def="min=0 max=1 step=0.005" />
         </window>
         
     </interface>
