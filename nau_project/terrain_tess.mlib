@@ -30,6 +30,9 @@
                                                      component="width"  />
                     <valueof uniform="scale" 	     type="RENDERER" context="CURRENT" 
                                                      component="scale"  />
+                    
+                    <valueof uniform="water_level" 	type="RENDERER" context="CURRENT" 
+												component="water_level"  />
 
                     <valueof uniform="noise" 	     type="TEXTURE_BINDING" context="CURRENT"
                                                      component="UNIT" id=0 />
