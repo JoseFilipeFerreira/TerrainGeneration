@@ -4,7 +4,7 @@
         <attributes>
             <attribute name="scale" data="FLOAT" type="RENDERER" value=0.5 />
             <attribute name="tesselation" data="INT" type="RENDERER" value=500 />
-            <attribute name="width" data="FLOAT" type="RENDERER" value=10 />
+            <attribute name="width" data="FLOAT" type="RENDERER" value=1 />
             <attribute name="level" data="FLOAT" type="RENDERER" value=30 />
             <attribute name="cam_pos_x" data="FLOAT" type="RENDERER" value=0 />
             <attribute name="water_level" data="FLOAT" type="RENDERER" value=0.1 />
@@ -58,7 +58,8 @@
         </lights>
         
         <materialLibs>
-            <materialLib filename="terrain_water_tess.mlib"/>
+            <materialLib filename="terrain_tess.mlib"/>
+            <materialLib filename="water_tess.mlib"/>
         </materialLibs>
         
     </assets>
@@ -68,31 +69,17 @@
     
         <pipeline name="p1" default="true">
 
-            <!--
-            <pass class="default" name="pass_water">
-
-                <scenes instances = 250000>
-                    <scene name="water" />
-                </scenes>
-
-                <camera name="MainCamera" />
-                <lights>
-                    <light name="Sun" />
-                </lights>
-                <materialMaps>
-                    <map fromMaterial="*"  toMaterial="water" toLibrary="terrain_shaders" />
-                </materialMaps>
-            </pass>-->
-
             <pass class="default" name="passQuad1">
                 <scenes>
                     <scene name="SquareTerrain" />
                 </scenes>
                 <camera name="MainCamera" />
+                <lights>
+                    <light name="Sun" />
+                </lights>
                 <materialMaps>
-                    <map fromMaterial="*" toLibrary="terrain_water_shaders" toMaterial="terrain" />
+                    <map fromMaterial="*" toLibrary="terrain_shaders" toMaterial="terrain" />
                 </materialMaps>
-                
             </pass>
 
             <pass class="default" name="passQuad2">
@@ -102,48 +89,22 @@
                     <scene name="SquareWater" />
                 </scenes>
                 <camera name="MainCamera" />
+                <lights>
+                    <light name="Sun" />
+                </lights>
                 <materialMaps>
-                    <map fromMaterial="*" toLibrary="terrain_water_shaders" toMaterial="water" />
+                    <map fromMaterial="*" toLibrary="water_shaders" toMaterial="water" />
                 </materialMaps>
             </pass>
 
-            <pass class="default" name="sky">
+            <!-- <pass class="default" name="sky">
                 <COLOR_CLEAR value=false />
                 <DEPTH_CLEAR value=false />
                 <scenes>
                     <scene name="skybox" />
                 </scenes>
                 <camera name="MainCamera" />
-            </pass>
-            <!--
-            <pass class="default" name="pass_terrain">
-
-                <scenes instances = 250000>
-                    <scene name="terrain" />
-                </scenes>
-
-                <camera name="MainCamera" />
-                <lights>
-                    <light name="Sun" />
-                </lights>
-                <materialMaps>
-                    <map fromMaterial="*"  toMaterial="terrain" toLibrary="terrain_shaders" />
-                </materialMaps>
-            </pass>
-            -->
-            
-            <!--
-            <pass class="default" name="pass_skybox">
-                <scenes instances = 1>
-                    <scene name="skybox" />
-                </scenes>
-                <camera name="MainCamera" />
-                <lights>
-                    <light name="Sun" />
-                </lights>
-            </pass>
-            -->
-                    
+            </pass> -->
         </pipeline>
         
     </pipelines>
@@ -162,6 +123,9 @@
 
             <var label="water level" type="RENDERER" context="CURRENT" 
                     component="water_level" def="min=0 max=5 step=0.02" />
+
+            <var label="width" type="RENDERER" context="CURRENT" 
+                    component="width" def="min=0.1 max=50 step=0.1" />
         </window>
         
     </interface>

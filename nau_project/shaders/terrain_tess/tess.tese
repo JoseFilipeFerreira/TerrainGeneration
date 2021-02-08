@@ -3,10 +3,14 @@
 layout(quads, equal_spacing, ccw) in;
 //equal_spacing
 //fractional_even_spacing
+
 uniform	mat4 m_pvm;
+uniform mat3 normal_matrix;
+
 uniform sampler2D noise;
 uniform sampler2D normals;
 uniform	float scale;
+uniform	float width;
 
 
 in vec4 posTC[];
@@ -28,7 +32,9 @@ void main() {
 
     DataOut.height = texture(noise, pos.xz).x;
     pos.y = DataOut.height * scale;
+    pos.x = pos.x * width;
+    pos.z = pos.z * width;
 
     gl_Position = m_pvm * pos;
-    DataOut.normal = texture(normals,pos.xz);
+    DataOut.normal = vec4(normalize(normal_matrix * texture(normals, pos.xz).xyz) ,0.0);
 }

@@ -6,118 +6,40 @@
         <texture name="normals" filename="textures/noise/hmap_normals.png" />
     </textures>
     <shaders>
-        <shader name="terrain" 		ps="shaders/terrain/terrain.frag" 
-                                    gs="shaders/terrain/terrain.geom" 
-                                    vs="shaders/terrain/terrain.vert" />
-
-        <shader name="water" 		ps="shaders/terrain/water.frag"
-                                    gs="shaders/terrain/water.geom"
-                                    vs="shaders/terrain/water.vert" />
-
-        <shader name="tessQuad" 	ps="shaders/terrain_tess/tess.frag"
-                                    tc="shaders/terrain_tess/tess.tesc"
-                                    te="shaders/terrain_tess/tess.tese"
-                                    vs="shaders/terrain_tess/tess.vert" />
+        <shader name="terrain" 	ps="shaders/terrain_tess/tess.frag"
+                                tc="shaders/terrain_tess/tess.tesc"
+                                te="shaders/terrain_tess/tess.tese"
+                                vs="shaders/terrain_tess/tess.vert" />
     </shaders>
 
-    <buffers>
-        <buffer name="terrain_point">
-            <SIZE value=16  />
-        </buffer>
-
-        <buffer name="water_point">
-            <SIZE value=16  />
-        </buffer>	
-    </buffers>
-    
     <materials>
     
-        <material name="terrain">
-            <shader name="terrain">
+        <material name="terrain" >
+            <shader name="terrain" >
                 <values>
                     <valueof uniform="m_pvm" 	type="RENDERER" context="CURRENT" 
                                                 component="PROJECTION_VIEW_MODEL"  />
-
-                    <valueof uniform="cam_pos_x" 	type="RENDERER" context="CURRENT" 
-                                                component="cam_pos_x"/>
-                                                
-                    <!--
-                    <valueof uniform="m_normal" 	type="RENDERER" context="CURRENT" 
-                                                component="NORMAL"  />	
-                    -->
-                                               
-                    <valueof uniform="light_dir"	type="LIGHT" context="CURRENT"
-                                                component="DIRECTION" id=0/>
-
-                    <valueof uniform="noise" 	type="TEXTURE_BINDING" context="CURRENT"
-                                                component="UNIT" id=0 />
-                    
-                    <valueof uniform="scale" 	type="RENDERER" context="CURRENT" 
-												component="scale"  />
+                    <valueof uniform="normal_matrix" type="RENDERER" context="CURRENT" 
+                                                component="NORMAL" />
 
                     <valueof uniform="tesselation" 	type="RENDERER" context="CURRENT" 
-												component="tesselation"  />
+                                                     component="tesselation"  />
+                    <valueof uniform="level" 	     type="RENDERER" context="CURRENT" 
+                                                     component="level"  />
+                    <valueof uniform="width" 	     type="RENDERER" context="CURRENT" 
+                                                     component="width"  />
+                    <valueof uniform="scale" 	     type="RENDERER" context="CURRENT" 
+                                                     component="scale"  />
 
-                    <valueof uniform="width" 	type="RENDERER" context="CURRENT" 
-												component="width"  />
-                    
-                    
-
-                    <valueof uniform="diffuse" 		type="COLOR" context="CURRENT" 
-														component="DIFFUSE" />
-														
-					<valueof uniform="light_dir" 	type="LIGHT" context="CURRENT" 
-														id=0 component="DIRECTION" />
-                    <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
-												component="VIEW" />
-                            
-                </values>
-            </shader>
-            <textures>
-                <texture name="noise"  UNIT="0" />
-            </textures>
-        </material>
-
-        <material name="water" >
-            <shader name="water" >
-                <values>
-                    <valueof uniform="m_pvm" 	type="RENDERER" context="CURRENT" 
-                                                component="PROJECTION_VIEW_MODEL"  />
-                    <valueof uniform="tesselation" 	type="RENDERER" context="CURRENT" 
-												component="tesselation"  />
-                    <valueof uniform="width" 	type="RENDERER" context="CURRENT" 
-												component="width"  />
-                    
-
-                </values>
-            </shader>
-
-            <textures>
-                <texture name="noise"  UNIT="0" />
-            </textures>
-        </material>
-
-        <material name="tessQuad" >
-            <shader name="tessQuad" >
-                <values>
-                    <valueof uniform="m_pvm" 	type="RENDERER" context="CURRENT" 
-                                                component="PROJECTION_VIEW_MODEL"  />
-                    <valueof uniform="tesselation" 	type="RENDERER" context="CURRENT" 
-												component="tesselation"  />
-
-					<valueof uniform="level" 		type="RENDERER" context="CURRENT" 
-														component="level"  />
-                    <valueof uniform="scale" 	type="RENDERER" context="CURRENT" 
-												component="scale"  />
-                    <valueof uniform="noise" 	type="TEXTURE_BINDING" context="CURRENT"
-                                                component="UNIT" id=0 />
-                    <valueof uniform="normals" 	type="TEXTURE_BINDING" context="CURRENT"
-                                                component="UNIT" id=1 />
+                    <valueof uniform="noise" 	     type="TEXTURE_BINDING" context="CURRENT"
+                                                     component="UNIT" id=0 />
+                    <valueof uniform="normals" 	     type="TEXTURE_BINDING" context="CURRENT"
+                                                     component="UNIT" id=1 />
 
                     <valueof uniform="light_dir" 	type="LIGHT" context="CURRENT" 
-														id=0 component="DIRECTION" />
+                                                    id=0 component="DIRECTION" />
                     <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
-												component="VIEW" />
+                                                component="VIEW" />
                     
                 </values>
             </shader>
@@ -127,5 +49,6 @@
                 <texture name="normals"  UNIT="1" />
             </textures>
         </material>
+
     </materials>
 </materialLib>

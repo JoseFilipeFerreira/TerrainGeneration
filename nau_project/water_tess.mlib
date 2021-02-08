@@ -13,16 +13,6 @@
                                 vs="shaders/water_tess/water.vert" />
     </shaders>
 
-    <buffers>
-        <buffer name="terrain_point">
-            <SIZE value=16  />
-        </buffer>
-
-        <buffer name="water_point">
-            <SIZE value=16  />
-        </buffer>	
-    </buffers>
-    
     <materials>
     
         <material name="water" >
@@ -30,18 +20,23 @@
                 <values>
                     <valueof uniform="m_pvm" 	type="RENDERER" context="CURRENT" 
                                                 component="PROJECTION_VIEW_MODEL"  />
-                    <valueof uniform="timer" 	type="RENDERER" context="CURRENT" 
-												component="TIMER"  />	
-                    <valueof uniform="tesselation" 	type="RENDERER" context="CURRENT" 
-												component="tesselation"  />
+                    <valueof uniform="normal_matrix" type="RENDERER" context="CURRENT" 
+                                                component="NORMAL" />
 
-					<valueof uniform="level" 		type="RENDERER" context="CURRENT" 
-														component="level"  />
+                    <valueof uniform="timer" 	type="RENDERER" context="CURRENT" 
+                                                component="TIMER"  />	
+                    <valueof uniform="tesselation" 	type="RENDERER" context="CURRENT" 
+                                                component="tesselation"  />
+
+                    <valueof uniform="width" 	     type="RENDERER" context="CURRENT" 
+                                                component="width"  />
+                    <valueof uniform="level" 		type="RENDERER" context="CURRENT" 
+                                                        component="level"  />
                     <valueof uniform="scale" 	type="RENDERER" context="CURRENT" 
-												component="scale"  />
+                                                component="scale"  />
 
                     <valueof uniform="water_level" 	type="RENDERER" context="CURRENT" 
-												component="water_level"  />
+                                                component="water_level"  />
 
                     <valueof uniform="noise" 	type="TEXTURE_BINDING" context="CURRENT"
                                                 component="UNIT" id=0 />
@@ -50,9 +45,9 @@
                                                 component="UNIT" id=1 />
 
                     <valueof uniform="light_dir" 	type="LIGHT" context="CURRENT" 
-														id=0 component="DIRECTION" />
+                                                        id=0 component="DIRECTION" />
                     <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
-												component="VIEW" />
+                                                component="VIEW" />
                     
                 </values>
             </shader>
