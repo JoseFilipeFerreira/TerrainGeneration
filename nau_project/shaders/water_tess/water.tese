@@ -3,6 +3,7 @@
 layout(quads, equal_spacing, ccw) in;
 
 uniform	mat4 m_pvm;
+//uniform	mat4 m_model;
 uniform mat3 normal_matrix;
 
 uniform	float scale;
@@ -13,12 +14,15 @@ uniform float wave_height;
 uniform float timer;
 uniform sampler2D noise;
 
+uniform vec3 cam_world_pos;
+
 in vec4 posTC[];
 
 out Data {
     float terrain_height;
     float water_height;
     vec4 normal;
+    vec3 eye_dir;
 } DataOut;
 
 float height_calculator(float px, float pz){
@@ -43,7 +47,7 @@ void main() {
     // float k =  10;
     // float c = sqrt(9.8/k);
     // float X = pos.x + pow(2.71828, pos.z * k) / k * cos(k*(pos.x + c * timer / 2000)) * 0.1;
-    // float Y = pos.z - pow(2.71828, pos.z * k) / k * cos(k*(pos.x + c * timer / 2000)) * 0.1;
+    // float  = pos.z - pow(2.71828, pos.z * k) / k * cos(k*(pos.x + c * timer / 2000)) * 0.1;
 
     // DataOut.water_height = X;
 
@@ -65,6 +69,7 @@ void main() {
     pos.x = pos.x * width;
     pos.z = pos.z * width;
 
+    DataOut.eye_dir = normalize(pos.xyz - cam_world_pos);
 
     gl_Position = m_pvm * pos;
 }

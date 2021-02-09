@@ -3,11 +3,19 @@
 
     
     <textures>
+        <cubeMap name="CMHouse" 
+            filePosX="textures/cubemap/sky_left.png"
+            fileNegX="textures/cubemap/sky_right.png"
+            filePosY="textures/cubemap/sky_up.png"
+            fileNegY="textures/cubemap/sky_bottom.png"
+            filePosZ="textures/cubemap/sky_front.png"
+            fileNegZ="textures/cubemap/sky_back.png"/>
+
         <texture name="noise" filename="textures/noise/hmap.png" />
     </textures>
     
     <shaders>
-        <shader name="water" 	ps="shaders/water_tess/water.frag"
+        <shader name="water"    ps="shaders/water_tess/water.frag"
                                 tc="shaders/water_tess/water.tesc"
                                 te="shaders/water_tess/water.tese"
                                 vs="shaders/water_tess/water.vert" />
@@ -18,8 +26,11 @@
         <material name="water" >
             <shader name="water" >
                 <values>
+                    
                     <valueof uniform="m_pvm" 	type="RENDERER" context="CURRENT" 
                                                 component="PROJECTION_VIEW_MODEL"  />
+                    <!-- <valueof uniform="m_model" 	type="RENDERER" context="CURRENT" 
+                                                component="MODEL"  /> -->
                     <valueof uniform="normal_matrix" type="RENDERER" context="CURRENT" 
                                                 component="NORMAL" />
 
@@ -58,11 +69,18 @@
                     <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
                                                 component="VIEW" />
                     
+                    <valueof uniform="cam_world_pos"	type="CAMERA" context="CURRENT"	
+                                                component="POSITION" />
+
+                    <valueof uniform="texUnit"		type="TEXTURE_BINDING" context="CURRENT"
+                                                component="UNIT" id=1 />
+                    
                 </values>
             </shader>
 
             <textures>
                 <texture name="noise"  UNIT="0" />
+                <texture name="CMHouse" UNIT="1" />
             </textures>
         </material>
     </materials>
