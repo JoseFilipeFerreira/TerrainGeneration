@@ -48,6 +48,9 @@
 
                     <valueof uniform="water_level" 	type="RENDERER" context="CURRENT" 
                                                 component="water_level"  />
+                    
+                    <valueof uniform="water_reflection" 	type="RENDERER" context="CURRENT" 
+                                                component="water_reflection"  />
 
                     <valueof uniform="wave_frequency" 	type="RENDERER" context="CURRENT" 
                                                 component="wave_frequency"  />

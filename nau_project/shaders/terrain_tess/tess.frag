@@ -46,30 +46,42 @@ void main()
     // Color constants:
 	vec4 rock            = vec4(0.582, 0.551, 0.520,1);
 	vec4 sand            = vec4(0.761, 0.698, 0.502,1);
+	vec4 lower_forest    = vec4(0.224, 0.259, 0.106, 1);
 	vec4 forest          = vec4(0.239, 0.501, 0.403,1);
 	vec4 lower_mountain  = vec4(0.647, 0.745, 0.494,1);
 	vec4 middle_mountain = vec4(0.772, 0.847, 0.729,1);
-	vec4 high_mountain   = vec4(0.835, 0.827, 0.839,1);
+	vec4 high_mountain   = vec4(0.514, 0.537, 0.96, 1);
+
+/*
+	vec4 lower_mountain  = vec4(161/255, 164/255, 68/255 , 1);
+	vec4 middle_mountain = vec4(200/255, 192/255, 189/255, 1);
+	vec4 high_mountain   = vec4(80/255 , 86/255 , 101/255, 1);
+*/
+	float steps = (1 - water_level) / 4;
     
+	if (height < water_level / 2) // DEEP WATER
+	{
+		height_color = mix(rock, sand, height/(water_level/2));
+	}
 	if (height < water_level) // UNDER WATER
 	{
-		height_color = mix(rock, sand, height/water_level);
+		height_color = mix(sand, lower_forest, (height - water_level/2)/(water_level/2));
 	}
-  	else if (height < 0.3) // LAND
+	else if (height < water_level + steps) // WATER LINE
 	{
-		height_color = mix(sand, forest, (height - 0.2) * (1/0.1));
+		height_color = mix(lower_forest, forest, (height - water_level)  / steps);
 	}
-  	else if (height < 0.7) // LOWER MOUNTAIN
+  	else if (height < water_level + steps * 2) // LOWER MOUNTAIN
 	{
-		height_color = mix(forest, lower_mountain, (height - 0.5) * (1/0.2));
+		height_color = mix(forest, lower_mountain, (height - water_level - steps) / steps);
 	}
-  	else if (height < 0.9) // MIDDLE MOUNTAIN
+  	else if (height < water_level + steps * 3) // MIDDLE MOUNTAIN
 	{
-		height_color = mix(lower_mountain, middle_mountain, (height - 0.7) * (1/0.2));
+		height_color = mix(lower_mountain, middle_mountain, (height - water_level - 2 * steps) / steps);
 	}
   	else // HIGH MOUNTAIN
 	{
-		height_color = mix(middle_mountain, high_mountain, (height - 0.9) * (1/0.1));
+		height_color = mix(middle_mountain, high_mountain, (height - water_level - 3 * steps) / steps);
 	}
 
     colorOut = (height_color * intensity) + height_color * 0.2;
