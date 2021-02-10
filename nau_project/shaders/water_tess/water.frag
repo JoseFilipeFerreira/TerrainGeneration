@@ -3,9 +3,12 @@
 uniform samplerCube texUnit;
 
 uniform mat4 view_matrix;
-uniform vec3 light_dir;
+uniform vec4 light_dir;
 uniform float foam_cutoff_height;
+uniform float light_slope;
+
 out vec4 colorOut;
+
 
 in Data {
     float terrain_height;
@@ -14,11 +17,26 @@ in Data {
     vec3 eye_dir;
 } DataIn;
 
+vec4 to_cartesian(vec4 dir) {
+	float x = dir.x * cos(dir.y);
+	float y = dir.x * sin(dir.y);
+	return vec4(x,y,dir.z,dir.w);
+}
+
+vec4 to_cylindrical(vec4 dir) {
+	float r = sqrt(pow(dir.x,2) + pow(dir.y,2) + pow(dir.z,2));
+	float theta = atan(dir.y,dir.x);
+	return vec4(r,theta,dir.z,dir.w);
+}
+
 void main()
 {
+	vec4 true_light_dir = to_cylindrical(light_dir);
+	true_light_dir.y += light_slope;
+	
 	vec3 n = normalize(DataIn.normal.xyz);
-	vec3 l = normalize(vec3(view_matrix * -vec4(light_dir, 0.0)));
-	float intensity = max(dot(n,l), 0.0);
+	vec3 l = normalize(vec3(view_matrix * -true_light_dir));
+	float intensity = max(dot(n,l), 0.0) * 0.7;
 
 	vec3 e = normalize(DataIn.eye_dir);
 	vec3 t = reflect(e, n);

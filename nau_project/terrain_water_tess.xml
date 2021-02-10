@@ -11,6 +11,8 @@
             <attribute name="wave_frequency" data="FLOAT" type="RENDERER" value=10 />
             <attribute name="wave_height" data="FLOAT" type="RENDERER" value=0.01 />
             <attribute name="foam_cutoff_height" data="FLOAT" type="RENDERER" value=0.05 />
+            <attribute name="light_slope" data="FLOAT" type="RENDERER" value=0 />
+            
             
         </attributes>
         <scenes>
@@ -56,7 +58,7 @@
         
         <lights>
             <light name="Sun" >
-                <DIRECTION x="1.0" y="-0.5" z="-2" />
+                <DIRECTION x="-0.5" y="-0.5" z="0" />
             </light>
         </lights>
         
@@ -126,6 +128,7 @@
     <interface>
         
         <window label="settings" >
+            
             <var label="level" type="RENDERER" context="CURRENT" component="level" 
                 def="min=1 max=64 step=0.1"/>
             
@@ -137,6 +140,9 @@
             
             <var label="width" type="RENDERER" context="CURRENT" 
                     component="width" def="min=0.1 max=50 step=0.1" />
+
+            <var label="light_slope" type="RENDERER" context="CURRENT" 
+                    component="light_slope" def="min=-3.14159 max=3.14159 step=0.05" />
 
         </window>
 
