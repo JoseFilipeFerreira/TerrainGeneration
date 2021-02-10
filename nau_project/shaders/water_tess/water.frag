@@ -5,6 +5,7 @@ uniform samplerCube texUnit;
 uniform mat4 view_matrix;
 uniform vec3 light_dir;
 uniform float foam_cutoff_height;
+uniform float water_reflection;
 out vec4 colorOut;
 
 in Data {
@@ -23,14 +24,16 @@ void main()
 	vec3 e = normalize(DataIn.eye_dir);
 	vec3 t = reflect(e, n);
 	vec3 ref = texture(texUnit, t).rgb;
+	vec4 water_ref = vec4(ref, 1.0);
 
     // Color constants:
-	vec4 water           = vec4(ref, 1.0); //vec4(0.368, 0.494, 1, 1.0);
-	vec4 foam            = vec4(1.0, 1.0, 1.0, 1.0);
-	
-	
+	vec4 water = vec4(0, 0.329, 0.576, 1.0);	
+	vec4 foam  = vec4(1.0, 1.0, 1.0, 1.0);
 
-	vec4 height_color = water;
+
+
+	
+	vec4 height_color = mix(water, water_ref, water_reflection);
 
 	float height_difference = abs(DataIn.water_height - DataIn.terrain_height);
 
@@ -40,7 +43,7 @@ void main()
 	} 
 	else if (height_difference < foam_cutoff_height) 
 	{
-		height_color = mix(foam, water, height_difference/foam_cutoff_height);
+		height_color = mix(foam, height_color, height_difference/foam_cutoff_height);
 	}
 
 	
