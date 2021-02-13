@@ -66,7 +66,7 @@ void main()
 
 	    gl_Position = m_pvm * (p[i]);
         //DataOut.square_normal = normalize( vec4((c-x1)+(x2-c) , 1 , (c-z1)+(z2-c) , 0) );
-        DataOut.square_normal = n[i];
+        DataOut.square_normal = n[i]; // * m_normal
         DataOut.pos = centers[i];
         //DataOut.square_normal = vec4(0,1,0,0);
         EmitVertex();

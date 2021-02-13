@@ -3,6 +3,9 @@
 uniform mat4 view_matrix;
 uniform vec4 light_dir;
 uniform float water_level;
+
+uniform float light_slope;
+
 out vec4 colorOut;
 
 in Data {
@@ -10,12 +13,29 @@ in Data {
     vec4 normal;
 } DataIn;
 
+
+vec4 to_cartesian(vec4 dir) {
+	float x = dir.x * cos(dir.y);
+	float y = dir.x * sin(dir.y);
+	return vec4(x,y,dir.z,dir.w);
+}
+
+vec4 to_cylindrical(vec4 dir) {
+	float r = sqrt(pow(dir.x,2) + pow(dir.y,2) + pow(dir.z,2));
+	float theta = atan(dir.y,dir.x);
+	return vec4(r,theta,dir.z,dir.w);
+}
+
 void main()
 {
     float intensity;
 	vec3 n, l;
 
-	l = normalize(vec3(view_matrix * -light_dir));
+	vec4 true_light_dir = to_cylindrical(light_dir);
+	true_light_dir.y += light_slope;
+
+
+	l = normalize(vec3(view_matrix * -true_light_dir));
 	n = normalize(DataIn.normal.xyz);
 	intensity = max(dot(l,n),0.0);
 

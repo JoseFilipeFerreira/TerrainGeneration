@@ -43,6 +43,9 @@
                                                     id=0 component="DIRECTION" />
                     <valueof uniform="view_matrix" 	type="RENDERER" context="CURRENT" 
                                                 component="VIEW" />
+                    <valueof uniform="light_slope" 	type="RENDERER" context="CURRENT" 
+												component="light_slope"  />
+                                                
                     
                 </values>
             </shader>

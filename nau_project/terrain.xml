@@ -59,7 +59,7 @@
 	
 		<pipeline name="p1" default="true">
 
-			<pass class="default" name="pass_water">
+			<!-- <pass class="default" name="pass_water">
 
 				<scenes instances = 250000>
 					<scene name="water" />
@@ -72,9 +72,9 @@
 				<materialMaps>
 					<map fromMaterial="*"  toMaterial="water" toLibrary="terrain_shaders" />
 				</materialMaps>
-			</pass>
+			</pass> -->
 
-			<!--
+			
 			<pass class="default" name="pass_terrain">
 
 				<scenes instances = 250000>
@@ -89,7 +89,7 @@
 					<map fromMaterial="*"  toMaterial="terrain" toLibrary="terrain_shaders" />
 				</materialMaps>
 			</pass>
-			-->
+			
 			
 			<!--
 			<pass class="default" name="pass_skybox">

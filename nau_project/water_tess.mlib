@@ -77,6 +77,8 @@
 
                     <valueof uniform="texUnit"		type="TEXTURE_BINDING" context="CURRENT"
                                                 component="UNIT" id=1 />
+                    <valueof uniform="light_slope" 	type="RENDERER" context="CURRENT" 
+												component="light_slope"  />
                     
                 </values>
             </shader>
