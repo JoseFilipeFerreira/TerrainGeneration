@@ -50,7 +50,7 @@ void main()
 	vec4 forest          = vec4(0.239, 0.501, 0.403,1);
 	vec4 lower_mountain  = vec4(0.647, 0.745, 0.494,1);
 	vec4 middle_mountain = vec4(0.772, 0.847, 0.729,1);
-	vec4 high_mountain   = vec4(0.514, 0.537, 0.96, 1);
+	vec4 high_mountain   = vec4(1, 1, 1, 1);
 
 /*
 	vec4 lower_mountain  = vec4(161/255, 164/255, 68/255 , 1);
