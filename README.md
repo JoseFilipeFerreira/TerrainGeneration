@@ -1,45 +1,22 @@
-# VI-2021
+# ⛰️ Terrain Generation
 
-A project for Visualization and Lighting subject.
+Rendering of a Terrain based on GLSL shadders and height maps (Vizualization and Ilumination assignment).
 
-This project is dedicated to the generation of procedural 
-terrains using the GPU and OpenGL Shader Language
+This project was developed with the [NAU3D](https://github.com/Nau3D/nau) engine.
 
 ## Running
 
-```shell
-nau_bin/composerImGui.exe ../nau_project/test.xml
+* install [NAU3D](https://github.com/Nau3D/nau/releases)
+* run:
+```bash
+[nau binary] src/terrain_water_tess.xml
 ```
+## Final Results
 
-## TODO
+# Authors
+* [Jose Filipe Ferreira](https://github.com/JoseFilipeFerreira)
+* [Jorge Mota](https://github.com/K1llByte)
 
-- [ ] Shaders that build terrain according to a sampler2D (perlin noise image)
-- [ ] Perlin noise image generator script or executable
 
-## Project Structure [WIP]
-
-```
-.
-├── nau_bin/  # try to reduce the binaries (16Mb currently)
-├── nau_project/
-│   ├── assets/
-│   │   ├── models/
-│   │   │   └── teapot.3ds
-│   │   └── noise/
-│   │       ├── noise1.jpg
-│   │       └── noise2.png
-│   ├── shaders/
-│   │   └── test/
-│   │       ├── test.frag
-│   │       └── test.vert
-│   ├── test.mlib
-│   └── test.xml
-├── noise_terrain_script
-├── README.md
-└── LICENSE
-```
-
-> **Notes:** Since the xml loader only finds files of the project config
-in the executable environment paths must be relative to it. That's the reason we include nau binaries. 
-> 
-> `nau_project` folder name mighty be changed to project object (like `terrain_gen` or something else)
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
