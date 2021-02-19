@@ -13,6 +13,8 @@ This project was developed with the [NAU3D](https://github.com/Nau3D/nau) engine
 ```
 ## Final Results
 
+![final result](report/images/result.gif)
+
 # Authors
 * [Jose Filipe Ferreira](https://github.com/JoseFilipeFerreira)
 * [Jorge Mota](https://github.com/K1llByte)
